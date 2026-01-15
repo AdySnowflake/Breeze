@@ -19,9 +19,6 @@ jobs:
           distribution: "temurin"
           java-version: "21"
 
-      - name: 设置 Dart SDK
-        uses: dart-lang/setup-dart@v1
-
       - name: 安装 FVM
         run: |
           dart pub global activate fvm
@@ -104,8 +101,6 @@ jobs:
           EOF
 
       - name: 构建 APK (Debug)
-        env:
-          CARGOKIT_TARGET_PLATFORMS: android-arm64
         run: flutter build apk --debug --target-platform android-arm64
 
       - name: 上传 APK
