@@ -19,6 +19,9 @@ jobs:
           distribution: "temurin"
           java-version: "21"
 
+      - name: 设置 Dart SDK
+        uses: dart-lang/setup-dart@v1
+
       - name: 安装 FVM
         run: |
           dart pub global activate fvm

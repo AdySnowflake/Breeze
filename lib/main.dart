@@ -126,7 +126,7 @@ Future<void> main() async {
         );
       }
 
-      if (kDebugMode) {
+      if (true) {
         FlutterError.onError = (FlutterErrorDetails details) {
           logger.e(
             details,
@@ -168,7 +168,7 @@ Future<void> main() async {
       );
     },
     (error, stackTrace) {
-      if (kDebugMode) {
+      if (true) {
         logger.e(error, error: error, stackTrace: stackTrace);
       } else {
         FirebaseCrashlytics.instance.recordError(
