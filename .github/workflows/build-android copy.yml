@@ -75,33 +75,33 @@ jobs:
       #     }
       #     EOF
 
-      - name: 创建 Google Services 配置
-        run: |
-          cat > android/app/google-services.json << 'EOF'
-          {
-            "project_info": {
-              "project_number": "123456789",
-              "project_id": "dummy-project",
-              "storage_bucket": "dummy-project.appspot.com"
-            },
-            "client": [
-              {
-                "client_info": {
-                  "mobilesdk_app_id": "1:123456789:android:abcdef",
-                  "android_client_info": {
-                    "package_name": "com.zephyr.breeze"
-                  }
-                },
-                "api_key": [
-                  {
-                    "current_key": "AIzaSyDummyKeyForBuildOnly"
-                  }
-                ]
-              }
-            ],
-            "configuration_version": "1"
-          }
-          EOF
+      # - name: 创建 Google Services 配置
+      #   run: |
+      #     cat > android/app/google-services.json << 'EOF'
+      #     {
+      #       "project_info": {
+      #         "project_number": "123456789",
+      #         "project_id": "dummy-project",
+      #         "storage_bucket": "dummy-project.appspot.com"
+      #       },
+      #       "client": [
+      #         {
+      #           "client_info": {
+      #             "mobilesdk_app_id": "1:123456789:android:abcdef",
+      #             "android_client_info": {
+      #               "package_name": "com.zephyr.breeze"
+      #             }
+      #           },
+      #           "api_key": [
+      #             {
+      #               "current_key": "AIzaSyDummyKeyForBuildOnly"
+      #             }
+      #           ]
+      #         }
+      #       ],
+      #       "configuration_version": "1"
+      #     }
+      #     EOF
 
       - name: 构建 APK (Debug)
         run: flutter build apk --debug --target-platform android-arm64
