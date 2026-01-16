@@ -4,8 +4,8 @@ import 'package:dio/dio.dart';
 import 'package:dio_cookie_manager/dio_cookie_manager.dart';
 import 'package:dynamic_color/dynamic_color.dart';
 import 'package:event_bus/event_bus.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_crashlytics/firebase_crashlytics.dart';
+// import 'package:firebase_core/firebase_core.dart';
+// import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -24,7 +24,7 @@ import 'package:zephyr/config/global/global_setting.dart';
 import 'package:zephyr/config/jm/config.dart';
 import 'package:zephyr/config/jm/jm_setting.dart';
 import 'package:zephyr/config/mobx/theme_mode_adapter.dart';
-import 'package:zephyr/firebase_options.dart';
+// import 'package:zephyr/firebase_options.dart';
 import 'package:zephyr/network/dio_cache.dart';
 import 'package:zephyr/network/http/jm/http_request_build.dart';
 import 'package:zephyr/object_box/model.dart';
@@ -140,18 +140,18 @@ Future<void> main() async {
           return true; // 表示错误已处理
         };
       } else {
-        await Firebase.initializeApp(
-          options: DefaultFirebaseOptions.currentPlatform,
-        );
+        // await Firebase.initializeApp(
+        //   options: DefaultFirebaseOptions.currentPlatform,
+        // );
 
-        FlutterError.onError = (FlutterErrorDetails errorDetails) {
-          FirebaseCrashlytics.instance.recordFlutterFatalError(errorDetails);
-        };
+        // FlutterError.onError = (FlutterErrorDetails errorDetails) {
+        //   FirebaseCrashlytics.instance.recordFlutterFatalError(errorDetails);
+        // };
 
-        PlatformDispatcher.instance.onError = (error, stack) {
-          FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
-          return true; // 表示错误已处理
-        };
+        // PlatformDispatcher.instance.onError = (error, stack) {
+        //   FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
+        //   return true; // 表示错误已处理
+        // };
       }
 
       jmDio.interceptors.add(CookieManager(JmConfig.cookieJar));
@@ -171,11 +171,11 @@ Future<void> main() async {
       if (true) {
         logger.e(error, error: error, stackTrace: stackTrace);
       } else {
-        FirebaseCrashlytics.instance.recordError(
-          error,
-          stackTrace,
-          fatal: true,
-        );
+        // FirebaseCrashlytics.instance.recordError(
+        //   error,
+        //   stackTrace,
+        //   fatal: true,
+        // );
       }
     },
   );
