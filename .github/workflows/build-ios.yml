@@ -20,6 +20,12 @@ jobs:
           fvm install
           fvm use --force
           
+      - name: Create iOS platform if not exists
+        run: |
+          if [ ! -d "ios" ]; then
+            fvm flutter create --platforms=ios .
+          fi
+          
       - name: Install Rust toolchain
         uses: dtolnay/rust-toolchain@stable
         with:
