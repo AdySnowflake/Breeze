@@ -43,12 +43,16 @@ jobs:
         run: sudo gem install cocoapods
       
       - name: Build iOS (no code sign)
+        env:
+          FLUTTER_XCODE_CODE_SIGN_STYLE: Manual
+          FLUTTER_XCODE_CODE_SIGN_IDENTITY: ""
+          FLUTTER_XCODE_DEVELOPMENT_TEAM: ""
         run: |
-          fvm flutter build ios --release --no-codesign \
-            --build-flag="CODE_SIGN_IDENTITY=" \
-            --build-flag="CODE_SIGNING_REQUIRED=NO" \
-            --build-flag="CODE_SIGN_ENTITLEMENTS=" \
-            --build-flag="CODE_SIGNING_ALLOWED=NO"
+          export CODE_SIGN_IDENTITY=""
+          export CODE_SIGNING_REQUIRED=NO
+          export CODE_SIGN_ENTITLEMENTS=""
+          export CODE_SIGNING_ALLOWED=NO
+          fvm flutter build ios --release --no-codesign
       
       - name: Upload IPA
         uses: actions/upload-artifact@v4
