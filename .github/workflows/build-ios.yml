@@ -25,6 +25,13 @@ jobs:
           if [ ! -d "ios" ]; then
             fvm flutter create --platforms=ios .
           fi
+
+      - name: Set iOS deployment target to 16.0
+        run: |
+          # 修改 Podfile
+          sed -i '' "s/platform :ios, '[0-9.]*'/platform :ios, '16.0'/" ios/Podfile
+          # 修改 project.pbxproj
+          sed -i '' 's/IPHONEOS_DEPLOYMENT_TARGET = [0-9.]*;/IPHONEOS_DEPLOYMENT_TARGET = 16.0;/g' ios/Runner.xcodeproj/project.pbxproj
           
       - name: Install Rust toolchain
         uses: dtolnay/rust-toolchain@stable
