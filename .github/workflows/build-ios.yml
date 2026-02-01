@@ -44,7 +44,11 @@ jobs:
       
       - name: Build iOS (no code sign)
         run: |
-          fvm flutter build ios --release --no-codesign
+          fvm flutter build ios --release --no-codesign \
+            --build-flag="CODE_SIGN_IDENTITY=" \
+            --build-flag="CODE_SIGNING_REQUIRED=NO" \
+            --build-flag="CODE_SIGN_ENTITLEMENTS=" \
+            --build-flag="CODE_SIGNING_ALLOWED=NO"
       
       - name: Upload IPA
         uses: actions/upload-artifact@v4
