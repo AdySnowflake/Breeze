@@ -1,0 +1,41 @@
+name: Build iOS
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: macos-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Set up FVM and Flutter
+        run: |
+          brew tap leoafarias/fvm
+          brew install fvm
+          fvm install
+          fvm use --force
+          
+      - name: Install Rust toolchain
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          toolchain: stable
+          targets: |
+            aarch64-apple-ios
+            # aarch64-apple-ios-sim
+            # x86_64-apple-ios
+      
+      - name: Install CocoaPods
+        run: sudo gem install cocoapods
+      
+      - name: Build iOS (no code sign)
+        run: |
+          fvm flutter build ios --release --no-codesign
+      
+      - name: Upload IPA
+        uses: actions/upload-artifact@v4
+        with:
+          name: ios-build
+          path: build/ios/iphoneos/*.app
